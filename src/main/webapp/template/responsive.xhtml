@@ -15,6 +15,7 @@
 <h:body>
     <f:facet name="last">
         <h:outputStylesheet library="css" name="w3.css" />
+        <h:outputStylesheet library="css" name="w3-colors-flat.css" />
     </f:facet>
 
     <p:outputPanel id="header" styleClass="w3-cell-row">
@@ -28,7 +29,7 @@
             <ui:include src="common-sidebar.xhtml" />
         </ui:insert>
 
-        <p:outputPanel id="mainContent" styleClass="w3-main" style="margin-left:200px;">
+        <p:outputPanel id="mainContent" styleClass="w3-main w3-container w3-padding" style="margin-left:#{profile.sidebarWidth}px;">
             <ui:insert name="content" />
         </p:outputPanel>
     </p:outputPanel>
@@ -38,6 +39,27 @@
             <ui:include src="common-footer.xhtml" />
         </ui:insert>
     </p:outputPanel>
+
+    <h:outputScript>
+        /**
+        * Toggles the visibility of the navigation sidebar. If it is visible, it will be hidden and if it
+        * was hidden, it will be shown. When showing or hiding the sidebar, the main content area will be
+        * modified as well in order to reflect the latest changes in screen width.
+        */
+        function toggle_sidebar_nav() {
+            var sidebarNav = document.getElementById("layoutSidebar");
+            var mainContent = document.getElementById("mainContent");
+
+            if (sidebarNav.style.display != "none") {
+                sidebarNav.style.display = "none";
+                mainContent.style.marginLeft = "0px";
+            } else {
+                sidebarNav.style.display = "block";
+                sidebarNav.style.width = "#{profile.sidebarWidth}px";
+                mainContent.style.marginLeft = "#{profile.sidebarWidth}px";
+            }
+        }
+    </h:outputScript>
 
 </h:body>
 </html>

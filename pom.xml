@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.vb.util</groupId>
+    <artifactId>jsf-template</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>JSF Template</name>
+
+    <packaging>war</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Maven Plugin Versions -->
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.war.plugin.version>3.2.2</maven.war.plugin.version>
+
+        <!-- Compilation settings -->
+        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.debug>true</maven.compiler.debug>
+        <maven.compiler.debuglevel>lines,vars,source</maven.compiler.debuglevel>
+
+        <!-- Versions of libraries used -->
+        <version.javaee>8.0</version.javaee>
+        <version.guava>27.0.1-jre</version.guava>
+        <version.lombok>1.18.4</version.lombok>
+
+        <version.primefaces>6.2</version.primefaces>
+        <version.primefaces.extensions>6.2.10</version.primefaces.extensions>
+        <version.primefaces.themes>1.0.10</version.primefaces.themes>
+
+    </properties>
+
+    <dependencies>
+
+        <!-- JavaEE API -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${version.javaee}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Google Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${version.guava}</version>
+        </dependency>
+
+        <!-- Project Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${version.lombok}</version>
+        </dependency>
+
+        <!-- Primefaces -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${version.primefaces}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>${version.primefaces.extensions}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+
+                <configuration>
+                    <annotationProcessorPaths>
+                        <!-- Project Lombok -->
+                        <annotationProcessorPath>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${version.lombok}</version>
+                        </annotationProcessorPath>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <!-- Maven War Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.plugin.version}</version>
+
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

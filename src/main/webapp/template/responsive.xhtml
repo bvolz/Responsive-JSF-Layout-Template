@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Responsive JSF Layout Template</title>
+    <h:outputScript library="js" name="layout.js" />
+</h:head>
+<h:body>
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="w3.css" />
+    </f:facet>
+
+    <p:outputPanel id="header" styleClass="w3-cell-row">
+        <ui:insert name="header">
+            <ui:include src="common-header.xhtml" />
+        </ui:insert>
+    </p:outputPanel>
+
+    <p:outputPanel id="body" styleClass="w3-cell-row">
+        <ui:insert name="sidebar">
+            <ui:include src="common-sidebar.xhtml" />
+        </ui:insert>
+
+        <p:outputPanel id="mainContent" styleClass="w3-main" style="margin-left:200px;">
+            <ui:insert name="content" />
+        </p:outputPanel>
+    </p:outputPanel>
+
+    <p:outputPanel id="footer" styleClass="w3-cell-row">
+        <ui:insert name="footer">
+            <ui:include src="common-footer.xhtml" />
+        </ui:insert>
+    </p:outputPanel>
+
+</h:body>
+</html>

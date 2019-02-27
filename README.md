@@ -1,0 +1,1 @@
+# Responsive JSF Layout Template

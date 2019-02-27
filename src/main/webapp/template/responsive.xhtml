@@ -18,23 +18,28 @@
         <h:outputStylesheet library="css" name="w3-colors-flat.css" />
     </f:facet>
 
-    <p:outputPanel id="header" styleClass="w3-cell-row">
+    <p:outputPanel id="header" styleClass="w3-bar w3-top" style="z-index:255;">
         <ui:insert name="header">
             <ui:include src="common-header.xhtml" />
         </ui:insert>
     </p:outputPanel>
 
     <p:outputPanel id="body" styleClass="w3-cell-row">
-        <ui:insert name="sidebar">
-            <ui:include src="common-sidebar.xhtml" />
-        </ui:insert>
+        <p:outputPanel id="layoutSidebar" class="w3-sidebar w3-padding-48 w3-bar-block w3-border-right w3-card w3-animate-left"
+                       style="width:#{profile.sidebarWidth}px;z-index:250;">
 
-        <p:outputPanel id="mainContent" styleClass="w3-main w3-container w3-padding" style="margin-left:#{profile.sidebarWidth}px;">
+            <ui:insert name="sidebar">
+                <ui:include src="common-sidebar.xhtml" />
+            </ui:insert>
+        </p:outputPanel>
+
+        <p:outputPanel id="mainContent" styleClass="w3-container w3-padding-48 w3-margin-top"
+                       style="margin-left:#{profile.sidebarWidth}px;">
             <ui:insert name="content" />
         </p:outputPanel>
     </p:outputPanel>
 
-    <p:outputPanel id="footer" styleClass="w3-cell-row">
+    <p:outputPanel id="footer" styleClass="w3-cell-row w3-bottom w3-padding w3-border-top w3-small" style="margin-left:#{profile.sidebarWidth}px;">
         <ui:insert name="footer">
             <ui:include src="common-footer.xhtml" />
         </ui:insert>
@@ -49,14 +54,17 @@
         function toggle_sidebar_nav() {
             var sidebarNav = document.getElementById("layoutSidebar");
             var mainContent = document.getElementById("mainContent");
+            var footer = document.getElementById("footer");
 
             if (sidebarNav.style.display != "none") {
                 sidebarNav.style.display = "none";
                 mainContent.style.marginLeft = "0px";
+                footer.style.marginLeft = "0px";
             } else {
                 sidebarNav.style.display = "block";
                 sidebarNav.style.width = "#{profile.sidebarWidth}px";
                 mainContent.style.marginLeft = "#{profile.sidebarWidth}px";
+                footer.style.marginLeft = "#{profile.sidebarWidth}px";
             }
         }
     </h:outputScript>
